@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="redditReader">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="js/app.js"></script>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body ng-controller="Fetcher">
+  <div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="mailto:rajdeeprrao94@gmail.com" target="_top">Contact</a>
+    <div class="search-container">
+      <form>
+        <input type="text" placeholder="Search.." name="search" ng-model="searchString">
+        <button type="submit" ng-click="addCategory(searchString)">Add Category</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <h1 id="pageHeader">Streamlined Reddit Reader</h1>
+    <div class="row">
+      <div class="col-sm-8" >
+        <h3 id="divHeader">Your Feeds</h3>
+        <ul>
+          <li ng-repeat="cat in categories">
+            <h4>{{cat['Category']}}</h4>
+            <ul class="inside">
+              <li ng-repeat="article in cat['Articles'] "><a href={{article['URL']}}>{{article['Title']}}</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-1"></div>
+      <div class="col-sm-3">
+        <h3 id="divHeader">Your Categories</h3>
+        <ul>
+          <li ng-repeat="category in categories">{{category['Category']}} <button id="del" ng-click="delCategory(category['Category'])">Delete</button></li>
+          <br>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
